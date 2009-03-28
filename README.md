@@ -1,6 +1,6 @@
 # Logv
 
-`Logv' is a cognitively lightweight logging utility for Common Lisp
+_Logv_ is a cognitively lightweight logging utility for Common Lisp
  
 The most useful form is `LOGV`, a macro that behaves like `PROGN` except that it
 writes each form and its return value to the log.
@@ -37,7 +37,7 @@ If the `:LOG-OUTPUT` setting is:
   then things that normally write to the log don't do anything
 * a _stream_
   then things that write to the log write to the stream
-* a _pathname designator_(a _pathname_ or a _string_): then things that write to the
+* a _pathname designator_ (a _pathname_ or a _string_): then things that write to the
   log write to the file pointed to by the string/pathname. the file is created if
   it doesn't already exist. if there are special characters they are encoded in
   UTF-8
@@ -51,7 +51,7 @@ like functions and macros. eg:
     (def-log-env :my-log (:logv-macro-name my-logv
                           :logvs-macro-name my-logvs
                           :format-log-function-name my-format-log)
-       :log-output "/path/to/log.txt" ; optional, defaults to t
+       :log-output "/path/to/log.txt"                         ; optional, defaults to t
        :log-prefix-string-factory #<function (lambda ()...>)> ; optional
     )
  
@@ -63,4 +63,3 @@ to `LOG-SETTING`:
 ## License
 
 BSD. See "license.txt"
- 
