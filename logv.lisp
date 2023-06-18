@@ -28,7 +28,7 @@
   (.verify-log-env-exists log-env-name)
   (.get-log-setting key log-env-name))
 
-(defsetf log-setting (key (log-env-name *default-log-env*)) (new-value)
+(defsetf log-setting (key &optional (log-env-name *default-log-env*)) (new-value)
   (let ((<log-env-name> (gensym "log-env-name-")))
     `(let ((,<log-env-name> ,log-env-name))
        (.verify-log-env-exists ,<log-env-name>)
@@ -65,7 +65,7 @@ on value of :LOG-OUTPUT log setting
 
 ; creating new loggers
 
-(defvar *.default-prefix-string-factory* 
+(defvar *.default-prefix-string-factory*
   (lambda ()
     (format nil
 	    "~%; ~A [~A]: "
@@ -87,7 +87,7 @@ on value of :LOG-OUTPUT log setting
 ;;   UTF-8
 
 		       (log-prefix-string-factory '*.default-prefix-string-factory*))
-									      
+
 ;; :LOG-PREFIX-STRING-FACTORY is a thunk that creates the string prepended to each log message
   `(progn
 
@@ -120,8 +120,8 @@ on value of :LOG-OUTPUT log setting
     ,@(when format-log-function-name
 	    `((defun ,format-log-function-name (fmt-string &rest fmt-args)
 		(.write-string-to-log ',env-name (apply 'format nil fmt-string fmt-args)))))))
-		
-	    
+
+
 (def-log-env :logv (:logv-macro-name logv
 		    :logvs-macro-name logvs
 		    :format-log-function-name format-log))
